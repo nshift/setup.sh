@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+message_file = ARGV[0]
+message = File.read(message_file)
+
+$grammar_regex = Regexp.new('^:(computer|art|construction_worker|racehorse|non-potable_water|memo|bug|fire|green_heart|white_check_mark|lock|arrow_up|arrow_down|shirt):\s[A-Z][\w\d\s]*[\w\d]\.(\n\s*(Related to)[#\w\d\s]*[\w\d]\.)?$')
+
+if !$grammar_regex.match(message)
+  puts "Your message does not match with the rules defined in the CONTRIBUTING.md."
+  exit 1
+end
